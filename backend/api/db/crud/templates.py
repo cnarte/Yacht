@@ -181,7 +181,7 @@ def add_compose(db: Session, compose: models.containers.Compose):
             os.remove('/config/'+compose_name+"."+ext)
 
         if ext in ('.yml', 'yaml'):
-            compose_path = wget.download(compose_url, out='/config/'+compose_name+"."+ext)
+            compose_path = wget.download(compose_url, out='/config/'+compose_name+'/'+compose_name+"."+ext)
         else:
             print('Not a valid extension: ' + ext)
             raise
@@ -208,6 +208,10 @@ def add_compose(db: Session, compose: models.containers.Compose):
         pass
 
     return get_compose(db=db, url=compose.url)
+
+def write_compose(db: Session, compose):
+    #TODO: Write compose to a file, validate that it's a yaml file, add said filepath into the db, return get_compose
+    print(compose)
 
 def get_compose(db: Session, url: str):
     return db.query(models.Compose).filter(models.Compose.url == url).first()
