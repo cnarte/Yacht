@@ -6,6 +6,7 @@ from .. import models, schemas
 from ...utils import conv_ports2dict, conv_sysctls2dict
 
 from datetime import datetime
+import pathlib
 import urllib.request
 import json
 import wget
@@ -207,11 +208,28 @@ def add_compose(db: Session, compose: models.containers.Compose):
         db.rollback()
         pass
 
-    return get_compose(db=db, url=compose.url)
+    return get_compose(db=db, name=compose.name)
 
 def write_compose(db: Session, compose):
-    #TODO: Write compose to a file, validate that it's a yaml file, add said filepath into the db, return get_compose
     print(compose)
+    pathlib.Path("config/compose/"+compose.name).mkdir(parents=True)
+    f = open('config/compose/'+compose.name+'/docker-compose.yml', "a")
+    f.write(compose.content)
+    f.close()
 
-def get_compose(db: Session, url: str):
-    return db.query(models.Compose).filter(models.Compose.url == url).first()
+    _compose = models.containers.Compose(
+        name = compose.name,
+        path = 'config/compose/'+compose.name+"/docker-compose.yml"
+    )
+
+    try:
+        db.add(_compose)
+        db.commit()
+    except IntegrityError as err:
+        db.rollback()
+        pass
+
+    return get_compose(db=db, name=compose.name)
+
+def get_compose(db: Session, name: str):
+    return db.query(models.Compose).filter(models.Compose.name == name).first()

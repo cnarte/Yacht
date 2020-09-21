@@ -54,7 +54,7 @@ def add_compose(compose: schemas.Compose, db: Session = Depends(get_db)):
     return crud.add_compose(db=db, compose=compose)
 
 @router.post("/compose/edit", response_model=schemas.ReadCompose)
-def write_compose(compose: schemas.Compose, db: Session = Depends(get_db)):
+def write_compose(compose: schemas.ComposeWrite, db: Session = Depends(get_db)):
     existing_compose = crud.get_compose(db=db, name=compose.name)
     if existing_compose:
         raise HTTPException(status_code=400, detail="Compose already in Database.")

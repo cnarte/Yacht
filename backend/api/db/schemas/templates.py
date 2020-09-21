@@ -1,7 +1,8 @@
 from __future__ import annotations
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Any
 from datetime import datetime
 from pydantic import BaseModel, Json
+
 
 class TemplateItem(BaseModel):
     id: int
@@ -20,9 +21,11 @@ class TemplateItem(BaseModel):
     env: Optional[List] = []
     sysctls: Optional[List] = []
     cap_add: Optional[List] = []
-    
+
     class Config:
         orm_mode = True
+
+
 ### TEMPLATE ####
 class TemplateBase(BaseModel):
     title: str
@@ -31,16 +34,20 @@ class TemplateBase(BaseModel):
     class Config:
         orm_mode = True
 
+
 class TemplateRead(TemplateBase):
     id: int
     updated_at: datetime
     created_at: datetime
-    
+
+
 class TemplateItems(TemplateRead):
     items: List[TemplateItem] = []
 
     class Config:
         orm_mode = True
+
+
 ### TEMPLATES END ###
 
 ### TEMPLATE VARIABLES ###
@@ -50,8 +57,11 @@ class TemplateVariables(BaseModel):
 
     class Config:
         orm_mode = True
+
+
 class ReadTemplateVariables(TemplateVariables):
     id: int
+
 
 ### Export/Import ###
 class Import_Export(BaseModel):
@@ -61,13 +71,24 @@ class Import_Export(BaseModel):
 
 TemplateItems.update_forward_refs()
 
+
 class Compose(BaseModel):
     name: str
-    description: Optional[str]
-    url: Optional[str]
-    
+
     class Config:
         orm_mode = True
 
+
+class ComposeDL(Compose):
+    description: Optional[str]
+    url: Optional[str]
+
+
+class ComposeWrite(Compose):
+    content: Optional[Any]
+
+
 class ReadCompose(Compose):
     path: str
+    description: Optional[str]
+    url: Optional[str]

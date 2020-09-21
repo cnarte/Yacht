@@ -75,6 +75,6 @@ class Compose(Base):
     __tablename__ = 'compose_templates'
     id = Column(Integer, primary_key=True)
     name = Column(String(64), index=True, unique=True)
-    description = Column(String(256))
+    description = Column(String(256), nullable=True)
     url = Column(String(256), nullable=True)
     path = Column(String(256), unique=True)

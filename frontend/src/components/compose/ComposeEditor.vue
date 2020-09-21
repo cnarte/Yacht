@@ -20,19 +20,19 @@
         <v-col class="flex-grow-1 flex-shrink-0">
         <v-text-field
           class="mr-3"
-          v-model="name"
+          v-model="form.name"
           label="Template Name"
           required
         >
         </v-text-field>
         </v-col>
         <v-col class="flex-grow-0 flex-shrink-1">
-          <v-btn color="primary" class="mr-2 mt-3">submit</v-btn>
+          <v-btn @click="submitCompose()" color="primary" class="mr-2 mt-3">submit</v-btn>
         </v-col>
         </v-row>
         </div>
         <editor
-          v-model="content"
+          v-model="form.content"
           @init="editorInit"
           lang="yaml"
           theme="twilight"
@@ -47,6 +47,7 @@
 
 <script>
 // import { mapActions, mapState } from "vuex";
+import axios from "axios";
 
 export default {
   data() {
@@ -69,6 +70,15 @@ export default {
     },
     submitCompose() {
       console.log(this.form);
+      let url = '/api/templates/compose/edit'
+      axios
+        .post(url, this.form, {})
+        .then(response => {
+          console.log(response)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
   },
 };
