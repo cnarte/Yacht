@@ -86,17 +86,9 @@ class Compose(BaseModel):
     class Config:
         orm_mode = True
 
-
-class ComposeDL(Compose):
-    description: Optional[str]
-    url: Optional[str]
-
-
 class ComposeWrite(Compose):
     content: Optional[Any]
 
-
 class ReadCompose(Compose):
     path: str
-    description: Optional[str]
-    url: Optional[str]
+    content: Optional[Any]

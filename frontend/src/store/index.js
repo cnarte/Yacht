@@ -4,6 +4,7 @@ import auth from "./modules/auth";
 import templates from "./modules/templates.js";
 import apps from "./modules/apps.js";
 import snackbar from "./modules/snackbar.js";
+import compose from "./modules/compose.js"
 
 Vue.use(Vuex);
 
@@ -40,6 +41,7 @@ export default new Vuex.Store({
     templates,
     apps,
     auth,
+    compose,
     snackbar
   }
 });

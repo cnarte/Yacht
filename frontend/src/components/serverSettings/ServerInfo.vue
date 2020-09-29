@@ -43,11 +43,7 @@
       <v-card-title class="font-weight-bold mt-5">
         Export:
       </v-card-title>
-<<<<<<< HEAD
-      <v-btn class="mx-5 mb-2" color="primary" @click="export_settings()"
-=======
       <v-btn class="mx-5 mb-5" color="primary" @click="export_settings()"
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
         >Export
       </v-btn>
     </v-card>
@@ -55,15 +51,10 @@
       <v-card-title class="subheading warning font-weight-bold"
         >Prune</v-card-title
       >
-<<<<<<< HEAD
-      <v-card-text class="mt-2">Delete unused images.</v-card-text>
-      <v-btn class="mx-5 mb-2" color="warning" @click="prune_images()">
-=======
       <v-card-text class="mt-2"
         >Delete unused images, volumes, and networks.</v-card-text
       >
       <v-btn class="mx-5 mb-5" color="warning" @click="prune_images()">
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
         Prune
       </v-btn>
     </v-card>
@@ -93,21 +84,12 @@ export default {
       axios({
         url: "/api/settings/prune",
         method: "GET",
-<<<<<<< HEAD
-        responseType: "text/json",
-      })
-        .then((response) => {
-          this.setSuccess(response);
-        })
-        .catch((err) => {
-=======
         responseType: "text/json"
       })
         .then(response => {
           this.setSuccess(response);
         })
         .catch(err => {
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
           this.setErr(err);
         });
     },

@@ -10,17 +10,13 @@ import pathlib
 import urllib.request
 from urllib.parse import urlparse
 import json
-<<<<<<< HEAD
 import wget
 import os
 from urllib.parse import urlparse
-=======
 import yaml
-import os
 
 # Templates
 
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
 
 def get_templates(db: Session):
     return db.query(models.Template).all()
@@ -262,72 +258,3 @@ def set_template_variables(db: Session, new_variables: models.TemplateVariables)
 
 def read_template_variables(db: Session):
     return db.query(models.TemplateVariables).all()
-
-def add_compose(db: Session, compose: models.containers.Compose):
-    try:
-    # Opens the JSON and iterate over the content.
-        _compose = models.containers.Compose(name = compose.name, url = compose.url)
- 
-        compose_name = compose.name
-        compose_url = compose.url
-        compose_description = compose.description
-
-        compose_path = urlparse(compose_url).path
-        ext = os.path.splitext(compose_path)[1]
-
-        if os.path.exists('/config/'+compose_name+"."+ext):
-            print('file exists, overwritting')
-            os.remove('/config/'+compose_name+"."+ext)
-
-        if ext in ('.yml', 'yaml'):
-            compose_path = wget.download(compose_url, out='/config/'+compose_name+'/'+compose_name+"."+ext)
-        else:
-            print('Not a valid extension: ' + ext)
-            raise
-
-        _compose = models.containers.Compose(
-            name = compose_name,
-            description = compose_description,
-            url = compose_url,
-            path = compose_path
-        )
-        
-    except (OSError, TypeError, ValueError) as err:
-        # Optional handle KeyError here too.
-        print('data request failed', err)
-        raise
-
-    try:
-        db.add(_compose)
-        db.commit()
-    except IntegrityError as err:
-        # TODO raises IntegrityError on duplicates (uniqueness)
-        #       status
-        db.rollback()
-        pass
-
-    return get_compose(db=db, name=compose.name)
-
-def write_compose(db: Session, compose):
-    print(compose)
-    pathlib.Path("config/compose/"+compose.name).mkdir(parents=True)
-    f = open('config/compose/'+compose.name+'/docker-compose.yml', "a")
-    f.write(compose.content)
-    f.close()
-
-    _compose = models.containers.Compose(
-        name = compose.name,
-        path = 'config/compose/'+compose.name+"/docker-compose.yml"
-    )
-
-    try:
-        db.add(_compose)
-        db.commit()
-    except IntegrityError as err:
-        db.rollback()
-        pass
-
-    return get_compose(db=db, name=compose.name)
-
-def get_compose(db: Session, name: str):
-    return db.query(models.Compose).filter(models.Compose.name == name).first()
