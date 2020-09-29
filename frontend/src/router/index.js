@@ -21,6 +21,8 @@ import ServerInfo from "../components/serverSettings/ServerInfo.vue"
 import ServerVariables from "../components/serverSettings/ServerVariables.vue"
 import Compose from "../views/Compose.vue";
 import ComposeEditor from "../components/compose/ComposeEditor.vue";
+import ComposeForm from "../components/compose/ComposeForm.vue";
+import ComposeList from "../components/compose/ComposeList.vue";
 
 Vue.use(VueRouter);
 
@@ -102,6 +104,16 @@ const routes = [
         name: "Compose Editor",
         path: "edit",
         component: ComposeEditor,
+      },
+      {
+        name: "Compose Downloader",
+        path: "dl",
+        component: ComposeForm
+      },
+      {
+        name: "Compose List",
+        path: "/",
+        component: ComposeList
       }
     ]
   },

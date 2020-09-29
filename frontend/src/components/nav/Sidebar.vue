@@ -89,9 +89,25 @@ export default {
         text: "Settings"
       },
       {
-        to: "/compose/edit",
         icon: "mdi-book-open-outline",
-        text: "Compose"
+        text: "Compose",
+        subLinks: [
+          {
+            text: "Compose List",
+            to: "/compose",
+            icon: "mdi-format-list-bulleted"
+          },
+          {
+            text: "New Compose",
+            to: "/compose/edit",
+            icon: "mdi-file-edit-outline"
+          },
+          {
+            text: "Download Compose",
+            to: "/compose/dl",
+            icon: "mdi-file-download-outline"
+          }
+        ]
       }
     ],
   }),
