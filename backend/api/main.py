@@ -4,7 +4,7 @@ from .routers import apps, templates, app_settings
 import uuid
 
 from .db import models
-from .db.database import SessionLocal
+from .db.database import SessionLocal, engine
 from .routers.app_settings import read_template_variables, set_template_variables, SessionLocal
 from sqlalchemy.orm import Session
 
@@ -14,6 +14,9 @@ from .utils import get_db
 from .auth import fastapi_users, cookie_authentication, database, users, user_create, UserDB, get_password_hash
 
 app = FastAPI(root_path="/api")
+
+models.Base.metadata.create_all(bind=engine)
+
 settings = Settings()
 
 app.include_router(
@@ -46,27 +49,32 @@ app.include_router(
     prefix="/settings",
     tags=["settings"]
 )
+
+
 @app.on_event("startup")
 async def startup():
     await database.connect()
+    # Clear old db migrations
+    delete_alembic = "DROP TABLE IF EXISTS alembic_version;"
+    await database.execute(delete_alembic)
     users_exist = await database.fetch_all(query=users.select())
     if users_exist:
-        print("users exist")
+        print("Users Exist")
     else:
-        print("no users")
-        ### This is where I'm having trouble
+        print("No Users. Creating the default user.")
+        # This is where I'm having trouble
         hashed_password = get_password_hash(settings.ADMIN_PASSWORD)
         base_user = UserDB(
-            id = uuid.uuid4(),
-            email = settings.ADMIN_EMAIL,
-            hashed_password = hashed_password,
-            is_active = True,
-            is_superuser = True
+            id=uuid.uuid4(),
+            email=settings.ADMIN_EMAIL,
+            hashed_password=hashed_password,
+            is_active=True,
+            is_superuser=True
         )
         user_created = await user_create(base_user)
     template_variables_exist = read_template_variables(SessionLocal())
     if template_variables_exist:
-        print("template variables exist")
+        print("Template Variables Exist")
     else:
         print("No Variables yet!")
         t_vars = settings.BASE_TEMPLATE_VARIABLES
@@ -78,6 +86,8 @@ async def startup():
             )
             t_var_list.append(template_variables)
         set_template_variables(new_variables=t_var_list, db=SessionLocal())
+
+
 @app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()

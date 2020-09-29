@@ -118,7 +118,8 @@
             <v-list class="secondary" dense>
               <v-list-item>
                 <v-list-item-content
-                  ><v-list-item-title class="px-5 text-centered font-weight-bold"
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
                     >Name</v-list-item-title
                   ></v-list-item-content
                 >
@@ -131,7 +132,8 @@
               </v-list-item>
               <v-list-item>
                 <v-list-item-content
-                  ><v-list-item-title class="px-5 text-centered font-weight-bold"
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
                     >Image</v-list-item-title
                   ></v-list-item-content
                 >
@@ -143,7 +145,8 @@
               </v-list-item>
               <v-list-item>
                 <v-list-item-content
-                  ><v-list-item-title class="px-5 text-centered font-weight-bold"
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
                     >Platform</v-list-item-title
                   ></v-list-item-content
                 >
@@ -163,7 +166,14 @@
             <v-list dense class="secondary">
               <v-list-item>
                 <v-list-item-content
-                  ><v-list-item-title class="px-5 text-centered font-weight-bold"
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
+                    >Label</v-list-item-title
+                  ></v-list-item-content
+                >
+                <v-list-item-content
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
                     >Host Port</v-list-item-title
                   ></v-list-item-content
                 >
@@ -175,6 +185,11 @@
               </v-list-item>
               <v-divider />
               <v-list-item v-for="port in selectedApp.ports" :key="port.hport">
+                <v-list-item-content
+                  ><v-list-item-title class="px-5 text-centered">{{
+                    port.label || "None"
+                  }}</v-list-item-title></v-list-item-content
+                >
                 <v-list-item-content
                   ><v-list-item-title class="px-5 text-centered">{{
                     port.hport
@@ -197,7 +212,8 @@
             <v-list dense class="secondary">
               <v-list-item>
                 <v-list-item-content
-                  ><v-list-item-title class="px-5 text-centered font-weight-bold"
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
                     >Host</v-list-item-title
                   ></v-list-item-content
                 >
@@ -235,12 +251,20 @@
             <v-list dense class="secondary">
               <v-list-item>
                 <v-list-item-content
-                  ><v-list-item-title class="px-5 text-centered font-weight-bold"
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
                     >Label</v-list-item-title
                   ></v-list-item-content
                 >
                 <v-list-item-content
-                  ><v-list-item-title class="px-5 text-centered font-weight-bold"
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
+                    >Name</v-list-item-title
+                  ></v-list-item-content
+                >
+                <v-list-item-content
+                  ><v-list-item-title
+                    class="px-5 text-centered font-weight-bold"
                     >Default</v-list-item-title
                   ></v-list-item-content
                 >
@@ -252,7 +276,11 @@
                     env.label
                   }}</v-list-item-title></v-list-item-content
                 >
-
+                <v-list-item-content
+                  ><v-list-item-title class="px-5 text-centered">{{
+                    env.name
+                  }}</v-list-item-title></v-list-item-content
+                >
                 <v-list-item-content
                   ><v-list-item-title class="px-5 text-centered">{{
                     env.default
@@ -288,12 +316,12 @@ export default {
     return {
       appDetailsDialog: false,
       selectedApp: null,
-      search: "",
+      search: ""
     };
   },
   computed: {
     ...mapGetters({
-      getTemplateById: "templates/getTemplateById",
+      getTemplateById: "templates/getTemplateById"
     }),
     ...mapState("templates", ["isLoading"]),
     template() {
@@ -302,7 +330,6 @@ export default {
     },
     filteredTemplateItems() {
       const templ = this.template;
-      console.log(templ)
       if (!templ) {
         return [];
       }
@@ -310,11 +337,11 @@ export default {
         return this.items;
       }
       return templ.items.filter(this.filterByTitle);
-    },
+    }
   },
   methods: {
     ...mapActions({
-      readTemplate: "templates/readTemplate",
+      readTemplate: "templates/readTemplate"
     }),
     sortByTitle(arr) {
       // Set slice() to avoid to generate an infinite loop!
@@ -329,12 +356,12 @@ export default {
       const regex = new RegExp(this.search, "i");
       return regex.test(item.title);
       // return item.title.includes(this.search);
-    },
+    }
   },
   created() {
     const templateId = this.$route.params.templateId;
     this.readTemplate(templateId);
-  },
+  }
 };
 </script>
 

@@ -43,7 +43,11 @@
       <v-card-title class="font-weight-bold mt-5">
         Export:
       </v-card-title>
+<<<<<<< HEAD
       <v-btn class="mx-5 mb-2" color="primary" @click="export_settings()"
+=======
+      <v-btn class="mx-5 mb-5" color="primary" @click="export_settings()"
+>>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
         >Export
       </v-btn>
     </v-card>
@@ -51,8 +55,15 @@
       <v-card-title class="subheading warning font-weight-bold"
         >Prune</v-card-title
       >
+<<<<<<< HEAD
       <v-card-text class="mt-2">Delete unused images.</v-card-text>
       <v-btn class="mx-5 mb-2" color="warning" @click="prune_images()">
+=======
+      <v-card-text class="mt-2"
+        >Delete unused images, volumes, and networks.</v-card-text
+      >
+      <v-btn class="mx-5 mb-5" color="warning" @click="prune_images()">
+>>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
         Prune
       </v-btn>
     </v-card>
@@ -66,28 +77,37 @@ import { mapMutations } from "vuex";
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider,
+    ValidationProvider
   },
   data() {
     return {
-      importFile: null,
+      importFile: null
     };
   },
   methods: {
     ...mapMutations({
       setSuccess: "snackbar/setSuccess",
-      setErr: "snackbar/setErr",
+      setErr: "snackbar/setErr"
     }),
     prune_images() {
       axios({
         url: "/api/settings/prune",
         method: "GET",
+<<<<<<< HEAD
         responseType: "text/json",
       })
         .then((response) => {
           this.setSuccess(response);
         })
         .catch((err) => {
+=======
+        responseType: "text/json"
+      })
+        .then(response => {
+          this.setSuccess(response);
+        })
+        .catch(err => {
+>>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
           this.setErr(err);
         });
     },
@@ -95,8 +115,8 @@ export default {
       axios({
         url: "/api/settings/export",
         method: "GET",
-        responseType: "blob",
-      }).then((response) => {
+        responseType: "blob"
+      }).then(response => {
         var FileURL = window.URL.createObjectURL(new Blob([response.data]));
         var fileLink = document.createElement("a");
 
@@ -112,18 +132,18 @@ export default {
       formData.append("upload", importFile);
       let axiosHeader = {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          "Content-Type": "multipart/form-data"
+        }
       };
       axios
         .post("/api/settings/export", formData, axiosHeader)
-        .then((response) => {
+        .then(response => {
           this.setSuccess(response);
         })
-        .catch((err) => {
+        .catch(err => {
           this.setErr(err);
         });
-    },
-  },
+    }
+  }
 };
 </script>

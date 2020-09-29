@@ -10,19 +10,16 @@ import vuetify from "./plugins/vuetify";
 // Form Validation
 import VueUtils from "./plugins/vueutils";
 import "./vee-validate";
-// Websockets
 // Animations
 require("animate.css/animate.compat.css");
 
-// Socket.io
-
 Vue.config.productionTip = false;
 
-// Handle Token Refresh on 401
+// Handle Token Refresh on 401 or 403
 function createAxiosResponseInterceptor() {
   const interceptor = axios.interceptors.response.use(
-    (response) => response,
-    (error) => {
+    response => response,
+    error => {
       if (error.response.status !== 401) {
         return Promise.reject(error);
       }
@@ -38,13 +35,14 @@ function createAxiosResponseInterceptor() {
   );
 }
 
+// Vue.component('apexchart', VueApexCharts)
+
 // Call interceptor
 createAxiosResponseInterceptor();
 Vue.use(VueUtils);
-
 new Vue({
   router,
   store,
   vuetify,
-  render: (h) => h(App),
+  render: h => h(App)
 }).$mount("#app");

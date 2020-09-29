@@ -19,6 +19,8 @@ class TemplateItem(BaseModel):
     ports: Optional[List] = []
     volumes: Optional[List] = []
     env: Optional[List] = []
+    devices: Optional[List] = []
+    labels: Optional[List] = []
     sysctls: Optional[List] = []
     cap_add: Optional[List] = []
 
@@ -27,6 +29,8 @@ class TemplateItem(BaseModel):
 
 
 ### TEMPLATE ####
+
+
 class TemplateBase(BaseModel):
     title: str
     url: str
@@ -51,6 +55,8 @@ class TemplateItems(TemplateRead):
 ### TEMPLATES END ###
 
 ### TEMPLATE VARIABLES ###
+
+
 class TemplateVariables(BaseModel):
     variable: str
     replacement: str
@@ -64,12 +70,15 @@ class ReadTemplateVariables(TemplateVariables):
 
 
 ### Export/Import ###
+
+
 class Import_Export(BaseModel):
     templates: List[TemplateItems] = []
     variables: List[ReadTemplateVariables] = []
 
 
 TemplateItems.update_forward_refs()
+<<<<<<< HEAD
 
 
 class Compose(BaseModel):
@@ -92,3 +101,5 @@ class ReadCompose(Compose):
     path: str
     description: Optional[str]
     url: Optional[str]
+=======
+>>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a

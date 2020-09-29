@@ -38,6 +38,11 @@
         <v-divider />
       </div>
     </v-list>
+    <template v-slot:append>
+      <a :href="'https://' + 'github.com/SelfhostedPro/Yacht'">
+        <v-icon size="200%" class="pa-2">mdi-github</v-icon>
+      </a>
+    </template>
   </v-navigation-drawer>
 </template>
 
@@ -46,7 +51,7 @@ export default {
   data: () => ({
     links: [
       {
-        to: "/dashboard",
+        to: "/",
         icon: "mdi-view-dashboard",
         text: "Dashboard",
         divider: true,
@@ -86,7 +91,7 @@ export default {
       {
         to: "/settings/info",
         icon: "mdi-cog",
-        text: "Settings"
+        text: "Settings",
       },
       {
         icon: "mdi-book-open-outline",
