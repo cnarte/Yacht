@@ -18,18 +18,13 @@ import UserSettings from "../views/UserSettings.vue";
 import ChangePasswordForm from "../components/userSettings/ChangePasswordForm.vue";
 import UserInfo from "../components/userSettings/UserInfo.vue";
 import ServerSettings from "../views/ServerSettings.vue";
-<<<<<<< HEAD
-import ServerInfo from "../components/serverSettings/ServerInfo.vue"
-import ServerVariables from "../components/serverSettings/ServerVariables.vue"
 import Compose from "../views/Compose.vue";
 import ComposeEditor from "../components/compose/ComposeEditor.vue";
 import ComposeForm from "../components/compose/ComposeForm.vue";
 import ComposeList from "../components/compose/ComposeList.vue";
-=======
 import ServerInfo from "../components/serverSettings/ServerInfo.vue";
 import ServerVariables from "../components/serverSettings/ServerVariables.vue";
 import Prune from "../components/serverSettings/Prune.vue";
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
 
 Vue.use(VueRouter);
 

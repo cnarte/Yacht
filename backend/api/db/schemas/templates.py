@@ -78,7 +78,6 @@ class Import_Export(BaseModel):
 
 
 TemplateItems.update_forward_refs()
-<<<<<<< HEAD
 
 
 class Compose(BaseModel):
@@ -101,5 +100,3 @@ class ReadCompose(Compose):
     path: str
     description: Optional[str]
     url: Optional[str]
-=======
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a

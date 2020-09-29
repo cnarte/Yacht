@@ -51,7 +51,6 @@ def refresh_template(id: int, db: Session = Depends(get_db)):
 @router.get("/app/{id}", response_model=schemas.TemplateItem, dependencies=[Depends(get_active_user)])
 def read_app_template(id: int, db: Session = Depends(get_db)):
     return crud.read_app_template(db=db, app_id=id)
-<<<<<<< HEAD
 
 @router.post("/compose", response_model=schemas.ReadCompose)
 def add_compose(compose: schemas.Compose, db: Session = Depends(get_db)):
@@ -66,5 +65,3 @@ def write_compose(compose: schemas.ComposeWrite, db: Session = Depends(get_db)):
     if existing_compose:
         raise HTTPException(status_code=400, detail="Compose already in Database.")
     return crud.write_compose(db=db, compose=compose)
-=======
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a

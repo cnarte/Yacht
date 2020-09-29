@@ -70,11 +70,6 @@ async def logs(websocket: WebSocket, app_name: str):
         await websocket.accept()
         async with aiodocker.Docker() as docker:
             container: DockerContainer = await docker.containers.get(app_name)
-<<<<<<< HEAD
-            logs = container.log(stdout=True, stderr=True, follow=True, tail=500)
-            async for line in logs:
-                await websocket.send_text(line)
-=======
             if container._container['State']['Status'] == 'running':
                 stats = container.stats(stream=True)
                 logs = container.log(stdout=True, stderr=True, follow=True)
@@ -85,7 +80,6 @@ async def logs(websocket: WebSocket, app_name: str):
                         return e
             else: 
                 await websocket.close(code=status.WS_1011_INTERNAL_ERROR)
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
     else:
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
 

@@ -155,12 +155,6 @@ def prune_images():
     deleted_images = dclient.images.prune()
     deleted_networks = dclient.networks.prune()
 
-<<<<<<< HEAD
-    deleted_everything.update(deleted_volumes)
-    deleted_everything.update(deleted_images)
-    deleted_everything.update(deleted_networks)
-    return deleted_everything
-=======
     deleted_everything.update(deleted_networks)
     deleted_everything.update(deleted_volumes)
     deleted_everything.update(deleted_images)
@@ -171,4 +165,3 @@ def prune_resources(resource):
     action = getattr(dclient, resource)
     deleted_resource = action.prune()
     return deleted_resource
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a

@@ -76,7 +76,6 @@ class TemplateVariables(Base):
     variable = Column(String(255),
                       nullable=False, unique=True, index=True)
     replacement = Column(String(255),
-<<<<<<< HEAD
         nullable=False, unique=True, index=True)
 
 class Compose(Base):
@@ -86,6 +85,3 @@ class Compose(Base):
     description = Column(String(256), nullable=True)
     url = Column(String(256), nullable=True)
     path = Column(String(256), unique=True)
-=======
-                         nullable=False, unique=True, index=True)
->>>>>>> ff5cde45e70a3c82a1e2f714da6e769b5bee580a
