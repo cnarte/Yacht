@@ -13,7 +13,7 @@
     
     
       
-        <title>Yacht - Yacht Documentation</title>
+        <title>Getting Started - Yacht Documentation</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install-yacht" class="md-skip">
+        <a href="#beginners-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Yacht
+              Getting Started
             
           </span>
         </div>
@@ -203,6 +203,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../yacht/" title="Yacht" class="md-nav__link">
+      Yacht
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -214,12 +226,12 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Yacht
+        Getting Started
         <span class="md-nav__icon md-icon"></span>
       </label>
     
-    <a href="./" title="Yacht" class="md-nav__link md-nav__link--active">
-      Yacht
+    <a href="./" title="Getting Started" class="md-nav__link md-nav__link--active">
+      Getting Started
     </a>
     
       
@@ -236,8 +248,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#via-docker" class="md-nav__link">
-    via Docker
+  <a href="#setting-up-yacht" class="md-nav__link">
+    Setting Up Yacht
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-variables" class="md-nav__link">
+    Template Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-template" class="md-nav__link">
+    Adding a Template
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-from-a-template" class="md-nav__link">
+    Deploying from a Template
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-yacht-via-docker-compse" class="md-nav__link">
+    Install Yacht via docker-compse
   </a>
   
 </li>
@@ -246,18 +286,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../gettingstarted/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
   </li>
 
         
@@ -426,8 +454,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#via-docker" class="md-nav__link">
-    via Docker
+  <a href="#setting-up-yacht" class="md-nav__link">
+    Setting Up Yacht
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-variables" class="md-nav__link">
+    Template Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-template" class="md-nav__link">
+    Adding a Template
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-from-a-template" class="md-nav__link">
+    Deploying from a Template
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-yacht-via-docker-compse" class="md-nav__link">
+    Install Yacht via docker-compse
   </a>
   
 </li>
@@ -445,14 +501,47 @@
               
                 
                 
-                <h1 id="install-yacht">Install Yacht</h1>
-<h2 id="via-docker">via Docker</h2>
-<p>Installing Yacht via docker is as simple as running two commands:</p>
-<p><div class="highlight"><pre><span></span><code>docker volume create yacht
+                <h1 id="beginners-guide">Beginners Guide</h1>
+<p>This guide will take you through setting up Yacht, adding your first template, and deploying your first app.</p>
+<h2 id="setting-up-yacht">Setting Up Yacht</h2>
+<p>Running Yacht is as simple as running the following two commands:
+<div class="highlight"><pre><span></span><code>docker volume create yacht
 docker run -d -p 8000:8000 -v /var/run/docker.sock:/var/run/docker.sock -v yacht:/config selfhostedpro/yacht
 </code></pre></div>
-This will start Yacht on port 8000 (change this to 8001 if you're also using portainer).</p>
-<p>The default credentials are <code>admin@yacht.local</code> and <code>pass</code>.</p>
+After that you can access Yacht on port 8000 on your server in a web browser.</p>
+<p><em>If you're using Yacht alongside portainer you'll want to change the 8000 on the left of the <code>:</code> to 8001, then it will be available on that port on your host.</em></p>
+<p>Once you're at the login page you can login with the username <code>admin@yacht.local</code> and the password <code>pass</code>.</p>
+<h2 id="template-variables">Template Variables</h2>
+<p>We'll setup template variables so that if you're using a template built for Yacht, you'll be able to have all of your files mounted in the correct places.</p>
+<p>Click on the Settings cog in the left sidebar and then click on Template Variables along the top.</p>
+<p>Replace the paths on the right with where you want each variable to be mounted. (This will typically be in your file shares if you're using a NAS).</p>
+<p>Add any additional Variables you would like and when you're done, hit save at the bottom.</p>
+<h2 id="adding-a-template">Adding a Template</h2>
+<p>To add a template, click on the Folder icon in the left sidebar and then on "New Template". If you don't have a template added yet it'll recommend you add the one that I maintain for Yacht. Once you've entered a name and URL you'll click submit.</p>
+<p>Now that you're on the "View Templates" page you can click on the template you added to see all the apps included with your template.</p>
+<p>From the "View Templates" page you can also click on the 3 dots and from there you can update if there are any changes, view the template, or delete the template.</p>
+<h2 id="deploying-from-a-template">Deploying from a Template</h2>
+<p>Now that you have a template added let's deploy an application. Click on your template to view it. Then pick an app to deploy. You can click on view to see any details about the application.</p>
+<p>One you've got an app in mind click on deploy and you'll be taken to the deploy form. Everything should be filled out for you but double check that everything looks correct. Click on continue until you get to the last page and then click on Deploy.</p>
+<p>Now you'll see your running app. You can click on it to view more detailed stats or click on the Arrow to the right of the name to perform an action with it.</p>
+<h2 id="install-yacht-via-docker-compse">Install Yacht via docker-compse</h2>
+<p>The following is an example docker-compose.yml file to deploy Yacht:
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">yacht</span><span class="p">:</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yacht</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8000:8000</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">yacht:/config</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">selfhostedpro/yacht</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+  <span class="nt">yacht</span><span class="p">:</span>
+</code></pre></div></p>
                 
               
               
@@ -471,7 +560,7 @@ This will start Yacht on port 8000 (change this to 8001 if you're also using por
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../requirements/" title="Requirements" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../yacht/" title="Yacht" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -480,19 +569,19 @@ This will start Yacht on port 8000 (change this to 8001 if you're also using por
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Requirements
+                Yacht
               </div>
             </div>
           </a>
         
         
-          <a href="../gettingstarted/" title="Getting Started" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../Templates/templates/" title="Templates Explained" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Getting Started
+                Templates Explained
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

@@ -57,6 +57,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#applications" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -204,6 +209,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Installation/gettingstarted/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -236,8 +253,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Templates/templates/" title="Templates" class="md-nav__link">
-      Templates
+    <a href="../../Templates/templates/" title="Templates Explained" class="md-nav__link">
+      Templates Explained
     </a>
   </li>
 
@@ -305,10 +322,89 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Applications
+        <span class="md-nav__icon md-icon"></span>
+      </label>
     
     <a href="./" title="Applications" class="md-nav__link md-nav__link--active">
       Applications
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#view-applications" class="md-nav__link">
+    View Applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-info" class="md-nav__link">
+    Application Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Application Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processes" class="md-nav__link">
+    Processes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stats" class="md-nav__link">
+    Stats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-application" class="md-nav__link">
+    New Application
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -361,15 +457,125 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#view-applications" class="md-nav__link">
+    View Applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-info" class="md-nav__link">
+    Application Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Application Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processes" class="md-nav__link">
+    Processes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stats" class="md-nav__link">
+    Stats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-application" class="md-nav__link">
+    New Application
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>Applications</h1>
-                
-                
+                <h1 id="applications">Applications</h1>
+<p><img alt="Applications Page" src="../Yacht-Applications.png" /></p>
+<h2 id="view-applications">View Applications</h2>
+<p>In the main view of the applications page you can see the following:</p>
+<ul>
+<li><strong>Running Apps:</strong><ul>
+<li>App Name</li>
+<li>App Status</li>
+<li>App Image</li>
+<li>Ports/Port Labels</li>
+<li>Created time</li>
+</ul>
+</li>
+<li><strong>App Actions (down chevron to the left):</strong><ul>
+<li>Start</li>
+<li>Stop</li>
+<li>Restart</li>
+<li>Update (one click utilizing watchtower on the backend)</li>
+<li>Kill</li>
+<li>Remove</li>
+</ul>
+</li>
+</ul>
+<p>Apps are sortable by the columns at the top or searchable via the searchbar at the top. Click on an app to view more details. Ports will be labeled if they were set when deployed.</p>
+<h2 id="application-info">Application Info</h2>
+<h3 id="info">Info</h3>
+<p>In this view you can see configuration settings for your container.</p>
+<h3 id="processes">Processes</h3>
+<p>This page shows the processes currently running on your container.</p>
+<h3 id="logs">Logs</h3>
+<p>The logs page will stream logs from the container to your browser so you don't need to refresh the page.</p>
+<h3 id="stats">Stats</h3>
+<p>This page shows a live view of the CPU and Memory usage for your container with 5 minutes worth of historical data (starting when you load the page).</p>
+<h2 id="new-application">New Application</h2>
+<p>This is the page where you can deploy containers. In the top right there's a button to load an app from a template. The page walks you through all of the different information required to deploy a container.</p>
                 
               
               
